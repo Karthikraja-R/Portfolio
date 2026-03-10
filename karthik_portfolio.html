@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karthikraja R · portfolio</title>
+    <!-- Font Awesome for clean icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #faf9fc;
+            color: #1e1b2b;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        /* modern gradient background */
+        .background-aura {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #f5e6ff 0%, #e8d4ff 25%, #d9c5ff 50%, #4b1469 75%, #e8d4ff 100%);
+            z-index: -2;
+            animation: gradientShift 15s ease infinite;
+        }
+
+        @keyframes gradientShift {
+            0% {
+                background: linear-gradient(135deg, #f5e6ff 0%, #e8d4ff 25%, #d9c5ff 50%, #cbb5ff 75%, #e8d4ff 100%);
+            }
+            50% {
+                background: linear-gradient(45deg, #e8d4ff 0%, #d9c5ff 25%, #cbb5ff 50%, #b8a2f0 75%, #d9c5ff 100%);
+            }
+            100% {
+                background: linear-gradient(135deg, #f5e6ff 0%, #e8d4ff 25%, #d9c5ff 50%, #cbb5ff 75%, #e8d4ff 100%);
+            }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 1.8rem 2.5rem;
+        }
+
+        /* ----- navigation top right (sticky) ----- */
+        nav {
+            display: flex;
+            justify-content: flex-end;
+            gap: 2.8rem;
+            padding: 0.75rem 1rem;
+            flex-wrap: wrap;
+            position: sticky;
+            margin-bottom: 10px;
+            top: 0;
+            background: rgba(255,255,255,0.55);
+            backdrop-filter: blur(6px);
+            z-index: 60;
+            border-bottom: 1px solid rgba(120,90,200,0.06);
+        }
+
+        nav a {
+            text-decoration: none;
+            font-weight: 550;
+            font-size: 1.2rem;
+            color: #2a2342;
+            position: relative;
+            transition: 0.2s ease;
+            letter-spacing: -0.2px;
+            border-bottom: 2px solid transparent;
+            padding-bottom: 4px;
+        }
+
+        nav a:hover {
+            color: #6c4fc9;
+            border-bottom-color: #6c4fc9;
+        }
+
+        /* interactive glow effect on nav */
+        nav a:active {
+            transform: scale(0.97);
+        }
+
+        /* header with name/title + resume style */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 2rem;
+            background: rgba(255, 255, 255, 0.4);
+            backdrop-filter: blur(2px);
+            padding: 1.5rem 2rem;
+            border-radius: 3rem 3rem 3rem 3rem;
+            box-shadow: 0 10px 25px -8px rgba(0,0,0,0.05);
+            border: 1px solid rgba(255,255,255,0.7);
+        }
+
+        .avatar-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(145deg, #b7a9e6, #8b74d6);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 600;
+            color: white;
+            box-shadow: 0 15px 20px -10px #b7a6e0;
+            border: 3px solid white;
+            flex-shrink: 0;
+        }
+
+        .karthikimg {
+            margin-left: auto;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .karthikimg img {
+            width: auto;
+            height: auto;
+            max-width: 400px;
+            max-height: 350px;
+            border-radius: 1.5rem;
+            object-fit: cover;
+            box-shadow: 0 15px 30px -10px rgba(107, 79, 201, 0.3);
+            border: 3px solid white;
+        }
+
+        .hero-text {
+            flex: 1 1 60%;
+            min-width: 220px;
+        }
+
+        .hero-text h1 {
+            font-size: 2.8rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            color: #1d133b;
+            line-height: 1.2;
+        }
+
+        .hero-text .badge {
+            background: #e3dcff;
+            color: #401d79;
+            padding: 0.3rem 1rem;
+            border-radius: 40px;
+            font-weight: 500;
+            font-size: 1rem;
+            display: inline-block;
+            margin-top: 0.4rem;
+        }
+
+        .contact-row {
+            display: flex;
+            gap: 1.8rem;
+            margin-top: 0.8rem;
+            flex-wrap: wrap;
+        }
+
+        .contact-row a, .contact-row span {
+            color: #2f274d;
+            text-decoration: none;
+            font-size: 1.05rem;
+            border-bottom: 1px dotted #aaa2c9;
+        }
+
+        .contact-row i {
+            margin-right: 6px;
+            color: #6d50b0;
+        }
+
+        /* card style for sections */
+        .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(8px);
+            border-radius: 2.5rem;
+            padding: 2rem 2.2rem;
+            margin: 2.5rem 0;
+            box-shadow: 0 20px 35px -15px rgba(60, 45, 110, 0.15);
+            border: 1px solid rgba(255,255,255,0.8);
+            transition: all 0.15s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 27px 45px -15px #a48fd6;
+            background: rgba(255, 255, 255, 0.8);
+            transform: scale(1.005);
+        }
+
+        h2 {
+            font-size: 2.1rem;
+            font-weight: 620;
+            letter-spacing: -0.01em;
+            margin-bottom: 1.8rem;
+            color: #241b42;
+            border-left: 8px solid #8b75d1;
+            padding-left: 1.2rem;
+        }
+
+        .grid-2col {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+
+        /* interest chips */
+        .interest-pills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin-top: 0.5rem;
+        }
+
+        .pill {
+            background: white;
+            padding: 0.5rem 1.5rem;
+            border-radius: 60px;
+            font-weight: 500;
+            color: #2a1c4a;
+            border: 1px solid #cdc0f0;
+            box-shadow: 0 2px 6px #e4daff;
+            font-size: 0.95rem;
+            transition: 0.1s linear;
+        }
+
+        .pill:hover {
+            background: #262035;
+            color: white;
+            border-color: #262035;
+            cursor: default;
+        }
+
+        /* skill tags */
+        .skill-block {
+            margin: 1.2rem 0 0.8rem 0;
+        }
+
+        .skill-title {
+            font-weight: 700;
+            color: #341f6e;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .skill-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin: 0.4rem 0 0.4rem 0;
+        }
+
+        .skill-tag {
+            background: #ece7ff;
+            padding: 0.35rem 1.1rem;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            border: 1px solid white;
+            font-weight: 470;
+        }
+
+        /* project cards interactive */
+        .project-item {
+            background: rgba(250, 248, 255, 0.8);
+            border-radius: 1.8rem;
+            padding: 1.5rem;
+            border: 1px solid white;
+            margin-bottom: 1.2rem;
+            transition: 0.1s;
+        }
+
+        .project-item:hover {
+            background: white;
+            border-left: 6px solid #7b63cf;
+        }
+
+        .project-item h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #1b1238;
+        }
+
+        .project-item p {
+            color: #2c2444;
+        }
+
+        .date-chip {
+            font-size: 0.8rem;
+            background: #cdbcf2;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            display: inline-block;
+            margin: 0.6rem 0 0.4rem;
+        }
+
+        /* intern / cert list */
+        .list-line {
+            display: flex;
+            gap: 1rem;
+            align-items: baseline;
+            border-bottom: 1px dashed #cdc2ea;
+            padding: 1rem 0;
+        }
+
+        .list-line i {
+            color: #785ec7;
+            width: 24px;
+            font-size: 1.2rem;
+        }
+
+        .list-line strong {
+            font-weight: 660;
+            color: #28204b;
+            min-width: 140px;
+        }
+
+        .hover-pop {
+            transition: 0.1s;
+        }
+        .hover-pop:hover {
+            transform: translateX(6px);
+            color: #000;
+        }
+
+        /* extracurricular badge */
+        .extra-badge {
+            display: inline-block;
+            background: #dcd1ff;
+            border-radius: 60px;
+            padding: 0.6rem 1.6rem;
+            font-size: 1.1rem;
+            font-weight: 520;
+            border: 2px solid white;
+            box-shadow: 0 2px 6px #b1a0dc;
+        }
+
+        /* footer */
+        .footer-note {
+            text-align: right;
+            margin-top: 3rem;
+            padding: 1.5rem 0;
+            color: #4b3f71;
+            font-weight: 400;
+            border-top: 2px dashed #d2c5fd;
+        }
+
+        /* responsive */
+        @media (max-width: 700px) {
+            .grid-2col { grid-template-columns: 1fr; }
+            nav { justify-content: center; gap: 1.5rem; }
+            .hero { flex-direction: column; text-align: center; }
+            .karthikimg { margin-left: 0; justify-content: center; margin-top: 1rem; }
+            .karthikimg img { max-width: 200px; max-height: 175px; width: auto; height: auto; }
+        }
+
+        /* interactive home highlight */
+        .intro-highlight {
+            background: linear-gradient(120deg, #ffffff 0%, #f3edff 100%);
+            border-radius: 3rem;
+            padding: 0.8rem 2rem;
+            margin-bottom: 0.8rem;
+            font-weight: 450;
+            border-left: 5px solid #917ad8;
+        }
+    </style>
+</head>
+<body>
+    <div class="background-aura"></div>
+
+    <div class="container">
+
+        <!-- navigation : top right side -->
+        <nav>
+            <a href="#home"><i class="fas fa-house" style="margin-right: 6px;"></i>Home</a>
+            <a href="#interests"><i class="fas fa-compass"></i> Interests</a>
+            <a href="#projects"><i class="fas fa-code"></i> Projects</a>
+            <a href="#skills"><i class="fas fa-cog"></i> Skills</a>
+            <a href="#cert"><i class="fas fa-award"></i> Achievements</a>
+        </nav>
+
+        <!-- HOME SECTION (introduction) -->
+        <section id="home">
+            <div class="hero">
+                <div class="avatar-icon">KR</div>
+                <div class="hero-text">
+                    <h1>KARTHIKRAJA R</h1>
+                    <div class="badge"><i class="fas fa-terminal"></i> B.E. CSE · Dr.Mahalingam CET, Pollachi</div>
+                    <div class="contact-row">
+                        <span><i class="fas fa-envelope"></i> karthikrajavasuki@gmail.com</span>
+                        <span><i class="fas fa-phone-alt"></i> +91 7448718606</span>
+                        <a href="https://www.linkedin.com/in/karthikraja-r-294430293"><i class="fab fa-linkedin"></i> karthikraja</a>
+                        <a href="https://github.com/Karthikraja-R"><i class="fab fa-github"></i> Karthikraja-R</a>
+                    </div>
+                </div>
+                <div class="karthikimg">
+                    <img src="karthik.jpg.jpeg" alt="karthk">
+                </div>
+            </div>
+
+            <!-- interactive introduction statement -->
+            <div class="intro-highlight">
+                <p style="font-size: 1.4rem; font-weight: 400;"><i class="fas fa-map-pin" style="color:#6f4fc9;"></i> Software Engineer with passion for <strong>networking, data analytics & web dev</strong>. I love building scalable solutions and debugging real-world puzzles.</p>
+                <p style="margin-top: 10px;">⚡ CGPA: 7.8 · HSC 75.5% · SSLC 100% · NSS volunteer</p>
+            </div>
+        </section>
+
+        <!-- AREA OF INTEREST (interactive) -->
+        <section id="interests">
+            <div class="card">
+                <h2><i class="fas fa-star" style="margin-right: 15px;"></i> Area of interest</h2>
+                <div class="interest-pills">
+                    <span class="pill"><i class="fas fa-network-wired"></i> Networking (TCP/IP, Firewalls)</span>
+                    <span class="pill"><i class="fas fa-chart-bar"></i> Data Science & Analytics</span>
+                    <span class="pill"><i class="fab fa-react"></i> Web Dev (React, Node)</span>
+                    <span class="pill"><i class="fas fa-shield-alt"></i> Network Security</span>
+                    <span class="pill"><i class="fas fa-robot"></i> Machine Learning</span>
+                    <span class="pill"><i class="fas fa-code"></i> Frontend: HTML/CSS/JS</span>
+                </div>
+                <!-- little interactive details -->
+                <div style="margin-top: 1.8rem; background: #eae2ff; border-radius: 30px; padding: 1rem 1.8rem;">
+                    <i class="fas fa-bolt" style="color:#5f40a8;"></i> <strong>quick fact:</strong> I love packet tracing & building clean dashboards.
+                </div>
+            </div>
+        </section>
+
+        <!-- PROJECTS + EDUCATION mixed interactive -->
+        <div class="grid-2col">
+            <section id="projects">
+                <div class="card" style="height: 90%;">
+                    <h2><i class="fas fa-folder-open"></i> projects</h2>
+                    <div class="project-item">
+                        <h3>🏥 Hospital management system (java)</h3>
+                        <span class="date-chip">console · OOP</span>
+                        <p>Patient booking with treatment spec, doctor fee, time slots. Built with core OOP concepts.</p>
+                    </div>
+                    <div class="project-item">
+                        <h3>📚 E-learning system (java)</h3>
+                        <span class="date-chip">quizzes · progress track</span>
+                        <p>Students access materials, attempt quizzes; instructors manage courses. Simple & user-friendly.</p>
+                    </div>
+                    <div style="background: #f3ecff; border-radius: 30px; padding: 1rem; margin-top: 1rem;">
+                        <i class="fas fa-laptop-code"></i> more interactive side projects brewing ...
+                    </div>
+                </div>
+            </section>
+
+            <!-- EDUCATION & EXTRACURRICULAR -->
+            <section>
+                <div class="card" style="height: 50%;">
+                    <h2><i class="fas fa-graduation-cap"></i> Education</h2>
+                    <ul style="list-style-type: none;">
+                        <li style="margin-bottom: 1rem;"><i class="fas fa-university" style="color:#7c62ce;"></i> <strong>B.E. CSE</strong> — Dr.Mahalingam CET, Pollachi (2027) · CGPA 7.8</li>
+                        <li style="margin-bottom: 1rem;"><i class="fas fa-school"></i> <strong>HSC (75.5%)</strong> — Govt HSS, T.keelaveli (2023)</li>
+                        <li style="margin-bottom: 1rem;"><i class="fas fa-school"></i> <strong>SSLC (100%)</strong> — Govt HSS, T.Keelaveli (2020)</li>
+                    </ul>
+                    <div style="margin: 1.5rem 0 0.5rem;">
+                        <span class="extra-badge"><i class="fas fa-hands-helping"></i> NSS-MCET member</span>
+                    </div>
+                    <div style="margin-top: 1rem;">
+                        <p><i class="fas fa-trophy" style="color:#936ef2;"></i> <strong>Psychology of Learning</strong> — NPTEL Elite + Gold (95%)</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- SKILLS (technical + soft) with interactive chips-->
+        <section id="skills">
+            <div class="card">
+                <h2><i class="fas fa-wrench"></i> skills</h2>
+                <div class="grid-2col">
+                    <div>
+                        <div class="skill-title">💻 programming languages</div>
+                        <div class="skill-tags"><span class="skill-tag">Java</span><span class="skill-tag">Python</span><span class="skill-tag">C</span></div>
+                        <div class="skill-title">🗄️ database</div>
+                        <div class="skill-tags"><span class="skill-tag">MySQL</span><span class="skill-tag">MongoDB</span><span class="skill-tag">SQLite</span></div>
+                        <div class="skill-title">🌐 web dev</div>
+                        <div class="skill-tags"><span class="skill-tag">HTML5</span><span class="skill-tag">CSS3</span><span class="skill-tag">JavaScript</span><span class="skill-tag">React</span><span class="skill-tag">Angular</span><span class="skill-tag">Node.js</span></div>
+                    </div>
+                    <div>
+                        <div class="skill-title">🛠️ tools & technologies</div>
+                        <div class="skill-tags"><span class="skill-tag">VS Code</span><span class="skill-tag">Canva</span></div>
+                        <div class="skill-title" style="margin-top: 1.5rem;">🧠 soft skills</div>
+                        <div class="skill-tags"><span class="skill-tag">Communication</span><span class="skill-tag">Analytical Thinking</span><span class="skill-tag">Root Cause Analysis</span><span class="skill-tag">Teamwork</span></div>
+                    </div>
+                </div>
+                <!-- Interactive hover message -->
+                <div style="margin-top: 2rem; font-style: italic; background: #f9f5ff; padding: 1rem; border-radius: 40px;">
+                    <i class="fas fa-mouse-pointer"></i> hover any chip or card → interactive glow
+                </div>
+            </div>
+        </section>
+
+        <!-- INTERNSHIPS + CERTIFICATIONS + ACHIEVEMENTS combined -->
+        <section id="cert">
+            <div class="card">
+                <h2><i class="fas fa-briefcase"></i> internships & credentials</h2>
+                
+                <div class="list-line">
+                    <i class="fas fa-laptop"></i>
+                    <strong>Indian Info Tech</strong>
+                    <span>Software Dev Intern · Namakkal (18.06.2025 – 02.07.2025) — Python, Turtle, file handling</span>
+                </div>
+
+                <div class="list-line">
+                    <i class="fas fa-certificate"></i>
+                    <strong>Python training</strong>
+                    <span>Indian Info Tech · completion certificate</span>
+                </div>
+
+                <div class="list-line">
+                    <i class="fas fa-medal"></i>
+                    <strong>NPTEL Psychology of Learning</strong>
+                    <span>Elite + Gold (95%)</span>
+                </div>
+
+                <div class="list-line">
+                    <i class="fas fa-star"></i>
+                    <strong>Web development fundamentals</strong>
+                    <span>certified (HTML, CSS, JS)</span>
+                </div>
+
+                <div class="list-line">
+                    <i class="fas fa-crown"></i>
+                    <strong>Achievement</strong>
+                    <span>SSLC 100% </span>
+                </div>
+                <!-- hidden interactive fact -->
+                <details style="margin-top: 1.2rem; cursor: pointer;">
+                    <summary><i class="fas fa-chevron-circle-right"></i> click for extra achievement</summary>
+                    <p style="margin-top: 0.8rem; background: white; border-radius: 30px; padding: 0.8rem;">🎯 Elite+ Gold Certified NPTEL</p>
+                </details>
+            </div>
+        </section>
+
+        <!-- EXTRACURRICULAR / fun interactive footer section -->
+        <section>
+            <div class="card" style="text-align: center; background: #e4d9ff;">
+                <p style="font-size: 1.3rem;"><i class="fas fa-user-plus"></i> extracurricular: member of NSS-MCET,community service</p>
+                <div style="display: flex; gap: 0.5rem; justify-content: center; margin: 1rem 0;">
+                    <span class="pill"><i class="fas fa-tree"></i> plantation drives</span>
+                    <span class="pill"><i class="fas fa-chalkboard-teacher"></i> village tutoring</span>
+                </div>
+                <button id="interactiveBtn" style="background: #34265b; border: none; color: white; padding: 0.8rem 2.2rem; border-radius: 60px; font-size: 1.1rem; margin-top: 0.5rem; cursor: pointer;"><i class="fas fa-magic"></i> click for surprise</button>
+                <p id="surpriseMessage" style="margin-top: 1rem; font-weight: 500; min-height: 2rem; color: #211449;"></p>
+            </div>
+        </section>
+
+        <div class="footer-note">
+            <i class="fas fa-feather"></i> designed from resume · Karthikraja R · 2026
+        </div>
+
+    </div> <!-- container end -->
+
+    <!-- tiny interactive js -->
+    <script>
+        (function() {
+            // surprise button effect
+            const btn = document.getElementById('interactiveBtn');
+            const msg = document.getElementById('surpriseMessage');
+            if (btn) {
+                btn.addEventListener('click', function() {
+                    msg.innerHTML = '✨ “Code, Network, Learn, Repeat” — Thanks for visiting! ✨';
+                    msg.style.transition = '0.3s';
+                    msg.style.fontSize = '1.3rem';
+                    btn.style.backgroundColor = '#5f4a9e';
+                });
+            }
+
+            // additional interactive: nav active link smooth highlight
+            const navLinks = document.querySelectorAll('nav a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function(e) {
+                    navLinks.forEach(l => l.style.color = '#2a2342');
+                    this.style.color = '#5f38c0';
+                });
+            });
+
+            // dynamic year in footer (optional)
+            const footer = document.querySelector('.footer-note');
+            // already 2026, but keep as is
+        })();
+    </script>
+
+    <!-- small style to make sure icons are nice -->
+    <style>
+        i { margin-right: 4px; }
+        ::selection { background: #c4b2f0; color: #0c0524; }
+        button { transition: 0.2s; }
+        button:hover { background: #4f3a86 !important; transform: scale(1.02); }
+        details summary { font-weight: 600; color: #3a2b62; }
+    </style>
+</body>
+</html>
